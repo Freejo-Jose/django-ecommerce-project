@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ tform.as_p }}
+    <button type="submit" href="{% url 'update' instance.id %}">Update</button></form>
+{% endblock %}
