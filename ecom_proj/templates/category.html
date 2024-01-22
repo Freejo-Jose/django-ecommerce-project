@@ -1,0 +1,48 @@
+{% extends 'base.html'  %}
+{% load static  %}
+
+{% block metadesc %}
+    {% if category %}
+        {{category.desc|truncatewords:155}}
+    {% else %}
+        Welcome to ABC store and buy your favourite things.
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{category.name}} - from your favourite ABC store.
+    {% else %}
+        Check out our new collections your heart desires.
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <div><div><p><a href="{% url 'ecom_app:allprodcat' %}">Our product collections.</a></p></div></div>
+        <div><img src="{{category.pic.url}}" alt="{{category.name}}" width="100%" height="300px"></div>
+        <div><h1>{{category.name}}</h1><p>{{category.desc}}</p></div>
+    {% else %}
+        <div><img src="{% static 'img/banner.png' %}"  width="1250px"></div>
+        <div><h1>Our prods</h1><p>Welcome to our exquisite online emporium, where elegance meets craftsmanship. Discover a lavish array of gold and silver jewelry, including resplendent bangles, captivating earrings, and timeless necklaces, each piece curated to adorn your moments with grace. Our collection extends beyond jewels, embracing the artistry of footwear. Step into style with our diverse range of men's and women's shoes, from chic sandals to sophisticated footwear. Immerse yourself in a world of opulence, where every piece reflects a commitment to quality and aesthetic refinement. Elevate your style effortlessly with our meticulously curated selection, blending tradition and contemporary allure. Explore the epitome of refined indulgence at our online store.</p></div>
+    {% endif %}
+    <div class="container"><div class="row mx-auto">
+        {% for p in products.object_list %}
+<div class="my-bottom-margin col col-lg-4 col-sm-4 col-md-6 ">
+    <div class='card text-center' style="min-width:10rem;"><a href="{{p.get_url}}"><img class='card-img-top my-image' src="{{p.pic.url}}" alt="{{p.name}}" width="150px" height="200px"></a></div>
+    <div class="card-body">
+        <h4><br>{{p.name}}</h4><p> &#8377;{{p.price}}</p>
+    </div>
+</div>
+        {% endfor %}
+    </div>
+<div class="mx-auto">
+    {% if products.paginator.num_pages > 1 %}<hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+                <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %}active{% endif %}"> {{pg}}</a>
+            {% endfor %}</div>
+    {% endif %}
+    </div>
+    </div>
+{% endblock %}

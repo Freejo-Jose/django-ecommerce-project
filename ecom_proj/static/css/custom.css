@@ -1,0 +1,75 @@
+.nav-item {
+letter-spacing:.2em;
+font-size: 14px;
+text-transform:uppercase;
+}
+.dropdowm-item {
+letter-spacing:.2em;
+font-size: 14px;
+text-transform:uppercase;
+}
+body{
+font-family: 'Space Grotesk', sans-serif;
+}
+.my-footer {
+background-color: #f8f9fa;
+height: 60px;
+}
+.my-footer p{
+padding-top:20px;
+font-size: 14px;
+
+}
+.my-bottom-margin{
+margin-bottom;10px;
+}
+.card-body h4{
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:.2em;
+}
+.my-image{
+width:180px;
+height:250px;
+}
+                /*product page*/
+.my-prod-row{
+padding-top:15px;
+padding-bottom:20px;
+}
+.my-prod-row .mx_auto{
+color:#000;
+font-size:12px;
+text-decoration:none;
+}
+.my-prod-name{
+font-size:16px;
+text-transform:uppercase;
+letter-spacing:.2em;
+padding-top:15px;
+padding-bottom:15px;
+}
+.my-text1{
+letter-spacing:.3Dem;
+}
+.my-text2{
+letter-spacing:.1em;
+}
+.my-search-text{
+padding-top:20px;
+}
+/*Cart page*/
+.cart-table{
+min-width:400px;
+font-size:14px;
+}
+.cart-thead{
+font-weight:normal;
+text-transform:uppercase;
+letter-spacing:.2em;
+background-color:#f8f8fa !important;
+}
+.my-cartimage{
+width:90px !important;
+height:125px !important;
+}

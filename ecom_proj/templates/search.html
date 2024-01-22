@@ -1,0 +1,30 @@
+{% extends 'base.html'  %}
+{% load static  %}
+
+{% block metadesc %}
+        Welcome to ABC store and buy your favourite things.
+{% endblock %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block content %}
+<div><p class="text-center my-search-text">Your search query <b>'{{query}}'</b> has given following results:
+</p></div>
+    <div class="container"><div class="row mx-auto">
+        {% for p in products %}
+<div class="my-bottom-margin col col-lg-4 col-sm-4 col-md-6 ">
+    <div class='card text-center' style="min-width:10rem;"><a href="{{p.get_url}}"><img class='card-img-top my-image' src="{{p.pic.url}}" alt="{{p.name}}" width="150px" height="200px"></a></div>
+    <div class="card-body">
+        <h4><br>{{p.name}}</h4><p> &#8377;{{p.price}}</p>
+    </div>
+</div>
+        {% empty %}
+        <div class="row mx-auto">
+                <p class="text-center my-search-text">Oops. You have got 0 results</p>
+        </div>
+{% endfor %}
+    </div></div>
+
+{% endblock %}

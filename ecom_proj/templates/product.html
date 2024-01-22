@@ -1,0 +1,33 @@
+{% extends 'base.html'  %}
+{% load static  %}
+
+{% block metadesc %}
+      {{product.desc|truncatewords:155}}
+{% endblock %}
+
+{% block title %}
+    {% if product %}
+        {{product.name}} - from your favourite ABC store.
+    {% endif %}
+{% endblock %}
+{% block content %}
+<div class="container my-prod-row"> <div class="mx_auto">
+        <p><a href="{% url 'ecom_app:allprodcat' %}">Home</a> | <a href="{{product.category.get_url}}">{{product.category.name}}</a> | {{product.name}}</p>
+</div></div>
+<div class="row container-fluid">
+    <div class="col-6 text-center"> <div><br>
+        <img  src="{{product.pic.url}}" alt="{{product.name}}" width="150px" height="200px">
+</div></div>
+    <div class="col-6"> <div>
+        <h1>{{product.name}}</h1>
+        <p class="fs-6"> &#8377;{{product.price}}</p>
+        <p class="fs-6 my-text1">Product Description</p>
+        <p class="fs-6 my-text2">{{product.desc}}</p>
+        {% if product.stock <= 0 %}
+        <p class="fs-4 text-uppercase"><b>Out of stock</b></p>
+        {% else %}
+        <a href="{% url 'cart_app:add2cart' product.id %}" class="btn btn-secondary">Add to cart</a>
+        {% endif %}
+    </div></div>
+</div>
+{% endblock %}

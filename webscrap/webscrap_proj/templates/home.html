@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Scraping</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container "><div class="row form-control">
+  <form method="post" style="vertical-align: top;"> {% csrf_token %}
+   <input type="text" placeholder="Enter your link" name="link">
+  <button class="btn btn-success" type="submit" action="{% url 'home' %}" >Update</button>
+  <button class="btn btn-danger " >Clear</button>
+  </form></div></div>
+
+  <div class="container">
+<table class="table">
+  <thead>
+    <tr class="table-dark">
+    <td>id</td>
+    <td>string</td>
+    <td>address</td>  </thead>
+  <tbody>
+  {% for i in alldata %}
+    <tr class="table-warning">
+    <td>{{i.id}}</td>
+    <td>{{i.string}}</td>
+    <td>{{i.address}}</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+</div>
+</body>
+</html>

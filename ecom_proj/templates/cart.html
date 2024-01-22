@@ -1,0 +1,59 @@
+{% extends 'base.html'  %}
+{% load static  %}
+
+{% block metadesc %}
+        View your cart!
+{% endblock %}
+
+{% block title %}
+        Check out your cart. -ABC store
+{% endblock %}
+
+{% block content %}
+{% if not cartitems %}
+<div><div class="text-center">
+        <h1 class="text-center">Your shooping cart is empty</h1><br>
+        <h4 class="text-center">Please click <a href="{% url 'ecom_app:allprodcat' %}">Here</a> to add products! </h4>
+</div></div>
+{% else %}
+<div><h3 class="text-center">Your shopping cart </h3></div>
+
+<div class="row col-12 col-sm-12 col-md-12 col-lg-12">
+<div class="col"><table class="table table-primary">
+<thead class="cart-thead"><tr><th class="text-center" colspan="4">
+                       Your Items
+</th></tr></thead>
+<tbody>
+{% for ci in cartitems %}<tr><td>
+<a href="{{ci.product.get_url}}"><img src="{{ci.product.pic.url}}" alt="{{ci.product.name}}" style="width:80px;height:80px;"></a>
+</td><td>
+<b>{{ci.product.name}}</b><br>
+    SKU#{{ci.product.id}} <br>
+    SKU Price:&#8377;{{ci.product.price}} <br>
+    Qty:{{ci.quantity}}
+</td><td>
+Item total: <br><b>&#8377;{{ci.subtotal}}</b></td><td>
+{% if ci.quantity < ci.product.stock %}
+    <a href="{% url 'cart_app:add2cart' ci.product.id %}"><i class="fa-solid fa-plus"></i></a>&nbsp;&nbsp;&nbsp;<br>
+    <a href="{% url 'cart_app:minuscart' ci.product.id %}"><i class="fa-solid fa-minus"></i></a>&nbsp;&nbsp;&nbsp;<br>
+    <a href="{% url 'cart_app:remfromcart' ci.product.id %}"><i class="fa-solid fa-trash"></i></a>
+{% else %}
+    <a href="{% url 'cart_app:minuscart' ci.product.id %}"><i class="fa-solid fa-minus"></i></a>&nbsp;&nbsp;&nbsp;<br>
+    <a href="{% url 'cart_app:remfromcart' ci.product.id %}"><i class="fa-solid fa-trash"></i></a>
+{% endif %}</td></tr>
+{% endfor %}</tbody></table></div>
+
+<div class="col"><table class="table table-primary">
+<thead class="cart-thead"><tr><th class="text-center" colspan="4">
+    Checkout
+</th></tr></thead>
+<tbody>
+    <tr><td><a href="{% url 'ecom_app:allprodcat' %}">Continue shopping</a></td>
+    <td>Total Quantity: <b>{{cartcount}}</b></td>
+    <td>Cart Value: <b>&#8377;{{cartvalue}}</b> </td>
+    <td><button class="btn btn-primary">Proceed Checkout</button></td></tr>
+</tbody>
+</table>
+</div></div>
+{% endif %}
+{% endblock %}
